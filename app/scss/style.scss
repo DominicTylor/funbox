@@ -1,0 +1,19 @@
+/**
+ * Created by MoHax on 19.03.2016.
+ */
+$white: #fff;
+$white-dark: #f2f2f2;
+$gray: #666;
+$black: #000;
+$gold: #ff6;
+$default: #1698d9;
+$default-hover: #2ea8e6;
+$selected: #d91667;
+$selected-hover: #e62e7a;
+$disabled: #b3b3b3;
+
+@import "modules/fonts";
+@import "modules/base";
+@import "modules/package";
+@import "modules/media";
+

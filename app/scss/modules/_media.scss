@@ -1,0 +1,23 @@
+@media (max-width: 1000px) {
+  .package {
+    margin-bottom: 20px;
+  }
+  .package__wrapper {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 350px) {
+  html, body {
+    font-size: 9px;
+  }
+  .container {
+    padding: 10px 5px;
+  }
+  .package + .package {
+    margin-left: 0;
+  }
+  .package__title {
+    font-size: 1.5rem;
+  }
+}

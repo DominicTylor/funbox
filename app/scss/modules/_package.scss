@@ -1,0 +1,294 @@
+// обёртка пакетов
+.package__wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1120px;
+  margin: auto;
+  justify-content: space-between;
+}
+
+// пакет
+.package {
+  box-sizing: border-box;
+  flex-basis: 320px;
+  min-width: 280px;
+  overflow: hidden;
+}
+
+.package + .package {
+  margin-left: 10px;
+}
+
+// верхняя часть
+.package__up {
+  box-sizing: border-box;
+  border-top: 4px solid $default;
+  border-right: 4px solid $default;
+  border-top-right-radius: 10px;
+  background: $white-dark;
+  color: $gray;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-left: 44px;
+  padding: 16px 0 6px 5px;
+  position: relative;
+  transition: all .3s linear;
+  &::before {
+    background: $white-dark;
+    border-top: 4px solid $default;
+    content: " ";
+    display: block;
+    height: 32px;
+    left: -42px;
+    position: absolute;
+    top: 12px;
+    width: 64px;
+    transform: rotate(-45deg);
+    transition: all .1s linear;
+    z-index: -1;
+  }
+}
+
+
+.package__up--selected-hover {
+  color: $selected-hover;
+  display: none;
+}
+
+// нижняя часть
+.package__down {
+  box-sizing: border-box;
+  background: $white-dark url("../img/cats.png") no-repeat bottom left;
+  border: 4px solid $default;
+  border-top: none;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+  height: 436px;
+  padding: 1px 42px 10px;
+  position: relative;
+  top: -1px;
+  transition: all .3s linear;
+}
+
+// название пакета
+.package__name {
+  font-size: 4.8rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.package__taste {
+  display: block;
+  font-size: .5em;
+  line-height: 1;
+  margin: 0;
+  padding-left: 2px;
+}
+
+// вес пакета
+.package__weight {
+  background: $default;
+  border-radius: 50%;
+  bottom: 11px;
+  box-sizing: border-box;
+  color: $white;
+  display: block;
+  font-size: 4.2rem;
+  line-height: .97;
+  height: 80px;
+  padding-top: 10px;
+  position: absolute;
+  right: 12px;
+  text-align: center;
+  transition: all .3s linear;
+  width: 80px;
+  z-index: 2;
+}
+
+.package__weight-units {
+  display: block;
+  font-size: .5em;
+  line-height: 1;
+}
+
+// описание пакета
+.package__title {
+  color: $white;
+  cursor: default;
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: 13px 0 0;
+  text-align: center;
+}
+
+.package__link {
+  color: $default;
+  transition: all .3s linear;
+  &:link,
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    color: $default;
+    transition: all .1s linear;
+  }
+}
+
+.package__title--default {
+  opacity: 1;
+}
+
+.package__title--selected {
+  display: none;
+}
+
+.package__title--disabled {
+  color: $gold;
+  display: none;
+}
+
+// наведение на пакет
+.package--hover {
+  .package__up {
+    border-top: 4px solid $default-hover;
+    border-right: 4px solid $default-hover;
+    transition: all .1s linear;
+    &::before {
+      border-top: 4px solid $default-hover;
+      transition: all .1s linear;
+    }
+  }
+  .package__down {
+    border: 4px solid $default-hover;
+    border-top: none;
+    transition: all .1s linear;
+  }
+  .package__weight {
+    background: $default-hover;
+    transition: all .1s linear;
+  }
+  .package__link {
+    color: $default-hover;
+    transition: all .1s linear;
+    &:link,
+    &:visited,
+    &:focus,
+    &:hover,
+    &:active {
+      color: $default-hover;
+      transition: all .1s linear;
+    }
+  }
+}
+
+// выбранный пакет
+.package--selected {
+  .package__up {
+    border-top: 4px solid $selected;
+    border-right: 4px solid $selected;
+    transition: all .1s linear;
+    &::before {
+      border-top: 4px solid $selected;
+      transition: all .1s linear;
+    }
+  }
+  .package__down {
+    border: 4px solid $selected;
+    border-top: none;
+    transition: all .1s linear;
+  }
+  .package__weight {
+    background: $selected;
+    transition: all .1s linear;
+  }
+}
+
+// наведение на выбранный пакет
+.package--selected.package--hover {
+  .package__up {
+    border-top: 4px solid $selected-hover;
+    border-right: 4px solid $selected-hover;
+    transition: all .1s linear;
+    &::before {
+      border-top: 4px solid $selected-hover;
+      transition: all .1s linear;
+    }
+  }
+  .package__down {
+    border: 4px solid $selected-hover;
+    border-top: none;
+    transition: all .1s linear;
+  }
+  .package__weight {
+    background: $selected-hover;
+    transition: all .1s linear;
+  }
+}
+
+// пакет без возможности выбора
+.package--disabled {
+  .package__up {
+    border-top: 4px solid $disabled;
+    border-right: 4px solid $disabled;
+    cursor: default;
+    &::before {
+      border-top: 4px solid $disabled;
+    }
+    &::after {
+      box-sizing: border-box;
+      background: rgba(242, 242, 242, .5);
+      border-top-right-radius: 5px;
+      content: " ";
+      display: block;
+      height: 44px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+  .package__down {
+    border: 4px solid $disabled;
+    border-top: none;
+    position: relative;
+    cursor: default;
+    &::before {
+      border-left: 40px solid transparent;
+      border-bottom: 40px solid rgba(242, 242, 242, .5);
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: -40px;
+      z-index: 3;
+    }
+    &::after {
+      box-sizing: border-box;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background: rgba(242, 242, 242, .5);
+      content: " ";
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 3;
+    }
+  }
+  .package__weight {
+    background: $disabled;
+    transition: all .1s linear;
+  }
+  .package__title--default {
+    display: none;
+  }
+  .package__title--disabled {
+    display: block;
+  }
+}
