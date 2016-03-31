@@ -1,9 +1,14 @@
-@media (max-width: 1000px) {
+@media (max-width: 1010px) {
   .package {
     margin-bottom: 20px;
   }
   .package__wrapper {
     justify-content: space-around;
+  }
+  .wrapper {
+    &::after {
+      display: none;
+    }
   }
 }
 
