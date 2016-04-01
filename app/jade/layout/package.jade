@@ -1,5 +1,5 @@
 mixin package(text)
-    section.package
+    section.package(class={'package--disabled': text.disable === true})
         .package__up
             span.package__up--default= text.up_default
             span.package__up--selected-hover= text.up_selected_hover
