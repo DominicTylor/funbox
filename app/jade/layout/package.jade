@@ -1,0 +1,16 @@
+mixin package(text)
+    section.package
+        .package__up
+            span.package__up--default= text.up_default
+            span.package__up--selected-hover= text.up_selected_hover
+        .package__down
+            h2.package__name= text.name
+            span.package__taste= text.taste
+            p.package__text!= text.text
+            .package__weight!= text.weight + '<br>'
+            span.package__weight-units= text.weight_units
+        h4.package__title
+            span.package__title--default= text.title_default
+            a.package__link(href=text.title_link) купи.
+            span.package__title--selected= text.title_selected
+            span.package__title--disabled= text.title_disabled
