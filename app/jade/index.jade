@@ -2,62 +2,62 @@ include layout/package
 
 doctype html
 html
-head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport",content="width=device-width, initial-scale=1.0")
-    title funbox second task
-    link(rel="stylesheet" href="css/lib.min.css")
-    link(rel="stylesheet" href="css/style.min.css")
-body
-    .wrapper
-        main.container
-            h1.heading Ты сегодня покормил кота?
-            .package__wrapper
-                +package({
-                    disable: false,
-                    up_default: 'Сказочное заморское яство',
-                    up_selected_hover: 'Котэ не одобряет?',
-                    name: 'Нямушка',
-                    taste: 'с фуа-гра',
-                    text: '<span class="bold_text">10</span> порций<br> мышь в подарок',
-                    weight: '0,5',
-                    weight_units: 'кг',
-                    title_default: 'Чего сидишь? Порадуй котэ, ',
-                    title_link: '#',
-                    title_selected: 'Печень утки разварная с артишоками.',
-                    title_disabled: 'Печалька, с фуа-гра закончился.',
-                })
-                +package({
-                    disable: false,
-                    up_default: 'Сказочное заморское яство',
-                    up_selected_hover: 'Котэ не одобряет?',
-                    name: 'Нямушка',
-                    taste: 'с рыбой',
-                    text: '<span class="bold_text">40</span> порций<br>' +
-                    '<span class = "bold_text" >2</span> мыши в подарок',
-                    weight: '2',
-                    weight_units: 'кг',
-                    title_default: 'Чего сидишь? Порадуй котэ, ',
-                    title_link: '#',
-                    title_selected: 'Головы щучьи с чесноком да свежайшая сёмгушка.',
-                    title_disabled: 'Печалька, с рыбой закончился.',
-                })
-                +package({
-                    disable: true,
-                    up_default: 'Сказочное заморское яство',
-                    up_selected_hover: 'Котэ не одобряет?',
-                    name: 'Нямушка',
-                    taste: 'с курой',
-                    text: '<span class="bold_text">100</span> порций<br>' +
-                    '<span class = "bold_text" >5</span> мышей в подарок' +
-                    '<br>заказчик доволен',
-                    weight: '0,5',
-                    weight_units: 'кг',
-                    title_default: 'Чего сидишь? Порадуй котэ, ',
-                    title_link: '#',
-                    title_selected: 'Филе из цыплят с трюфелями в бульоне.',
-                    title_disabled: 'Печалька, с курой закончился.',
-                })
-    script(src="//yandex.st/jquery/2.0.3/jquery.min.js")
-    script(src="js/common.min.js")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport",content="width=device-width, initial-scale=1.0")
+        title funbox second task
+        link(rel="stylesheet" href="css/lib.min.css")
+        link(rel="stylesheet" href="css/style.min.css")
+    body
+        .wrapper
+            main.container
+                h1.heading Ты сегодня покормил кота?
+                .package__wrapper
+                    +package({
+                        disable: false,
+                        up_default: 'Сказочное заморское яство',
+                        up_selected_hover: 'Котэ не одобряет?',
+                        name: 'Нямушка',
+                        taste: 'с фуа-гра',
+                        text: '<span class="bold_text">10</span> порций<br> мышь в подарок',
+                        weight: '0,5',
+                        weight_units: 'кг',
+                        title_default: 'Чего сидишь? Порадуй котэ, ',
+                        title_link: '#',
+                        title_selected: 'Печень утки разварная с артишоками.',
+                        title_disabled: 'Печалька, с фуа-гра закончился.',
+                    })
+                    +package({
+                        disable: false,
+                        up_default: 'Сказочное заморское яство',
+                        up_selected_hover: 'Котэ не одобряет?',
+                        name: 'Нямушка',
+                        taste: 'с рыбой',
+                        text: '<span class="bold_text">40</span> порций<br>' +
+                        '<span class = "bold_text" >2</span> мыши в подарок',
+                        weight: '2',
+                        weight_units: 'кг',
+                        title_default: 'Чего сидишь? Порадуй котэ, ',
+                        title_link: '#',
+                        title_selected: 'Головы щучьи с чесноком да свежайшая сёмгушка.',
+                        title_disabled: 'Печалька, с рыбой закончился.',
+                    })
+                    +package({
+                        disable: true,
+                        up_default: 'Сказочное заморское яство',
+                        up_selected_hover: 'Котэ не одобряет?',
+                        name: 'Нямушка',
+                        taste: 'с курой',
+                        text: '<span class="bold_text">100</span> порций<br>' +
+                        '<span class = "bold_text" >5</span> мышей в подарок' +
+                        '<br>заказчик доволен',
+                        weight: '0,5',
+                        weight_units: 'кг',
+                        title_default: 'Чего сидишь? Порадуй котэ, ',
+                        title_link: '#',
+                        title_selected: 'Филе из цыплят с трюфелями в бульоне.',
+                        title_disabled: 'Печалька, с курой закончился.',
+                    })
+        script(src="//yandex.st/jquery/2.0.3/jquery.min.js")
+        script(src="js/common.min.js")
