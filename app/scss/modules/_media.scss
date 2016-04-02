@@ -1,31 +1,34 @@
-@media (max-width: 1010px) {
+@media (max-height: 600px) {
+  .container {
+    position: relative;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1016px) {
+  .container {
+    position: relative;
+    transform: translateY(0);
+  }
   .package {
     margin-bottom: 20px;
   }
   .package__wrapper {
     justify-content: space-around;
   }
-  .wrapper {
-    &::after {
-      display: none;
-    }
-  }
 }
 
 @media (max-width: 350px) {
   html, body {
-    font-size: 10px;
+    font-size: 9px;
   }
   .container {
-    padding: 10px 5px;
+    padding: 10px 5px 18px;
   }
   .package + .package {
     margin-left: 0;
   }
   .package__title {
     font-size: 1.5rem;
-  }
-  .package__down {
-    top: -2px;
   }
 }
