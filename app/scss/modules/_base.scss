@@ -1,8 +1,7 @@
-html, body {
-  height: 100%;
+html {
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-size: 10px;
 }
 
@@ -13,10 +12,13 @@ html, body {
 body {
   color: $black;
   font-family: "Trebuchet MS", "Helvetica", sans-serif;
-  overflow: auto;
+  min-height: 100vh;
   line-height: 1.2;
   min-width: 310px;
   width: 100%;
+  background: url(../img/shadow_up.png) repeat-x left top,
+  url(../img/shadow_down.png) repeat-x left bottom,
+  url(../img/background.jpg);
 }
 
 .bold_text {
@@ -33,46 +35,16 @@ body {
   font-weight: bold;
   font-style: italic;
 }
-
 .wrapper {
-  min-height: 100%;
-  position: relative;
-  background: url("../img/background.jpg");
-  &::before {
-    background: url("../img/shadow_up.png") repeat-x left top;
-    background-size: contain;
-    content: " ";
-    display: block;
-    height: 290px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-  &::after {
-    background: url("../img/shadow_down.png") repeat-x left top;
-    background-size: contain;
-    content: " ";
-    display: block;
-    height: 224px;
-    left: 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
+  min-height: 100vh;
+  display: flex;
 }
-
 .container {
-  position: absolute;
   font-size: 1.4rem;
   margin: auto;
   padding: 10px 10px 18px;
-  top: 50%;
   width: 100%;
-  z-index: 1;
-  transform: translateY(-50%);
 }
-
 .heading {
   color: $white;
   font-family: "Exo2.0-Thin";
