@@ -3,13 +3,13 @@
   .package {
     margin-bottom: 20px;
   }
-  .package__wrapper {
+  .container {
     justify-content: space-around;
   }
 }
 
 @media (max-width: 350px) {
-  html, body {
+  html {
     font-size: 9px;
   }
   .container {

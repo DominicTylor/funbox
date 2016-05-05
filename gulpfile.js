@@ -1,81 +1,98 @@
 /**
  * Created by MoHax on 19.03.2016.
  */
-var gulp = require('gulp'), // Подключаем Gulp
-    sass = require('gulp-sass'), //Подключаем Sass пакет,
-    browserSync = require('browser-sync'), // Подключаем Browser Sync
-    concat = require('gulp-concat'), // Подключаем gulp-concat (для конкатенации файлов)
-    uglify = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
-    cssnano = require('gulp-cssnano'), // Подключаем пакет для минификации CSS
-    rename = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
-    del = require('del'), // Подключаем библиотеку для удаления файлов и папок
-    imagemin = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
-    pngquant = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
-    cache = require('gulp-cache'), // Подключаем библиотеку кеширования
-    autoprefixer = require('gulp-autoprefixer'),// Подключаем библиотеку для автоматического добавления префиксов
-    jade = require('gulp-jade');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cleanCSS = require('gulp-clean-css'),
+    rename = require('gulp-rename'),
+    browserSync = require('browser-sync').create(),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    jade = require('gulp-jade'),
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
+    cache = require('gulp-cache');
 
-gulp.task('scss', function () { // Создаем таск Scss
-    return gulp.src('app/scss/**/*.scss') // Берем источник
-        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError)) // Преобразуем Scss в CSS посредством gulp-sass
-        .pipe(autoprefixer(['last 3 versions', 'ie 10'], {cascade: true})) // Создаем префиксы
-        .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
-        .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
-        .pipe(browserSync.reload({stream: true}));// Обновляем CSS на странице при изменении
-});
-gulp.task('browser-sync', function () { // Создаем таск browser-sync
-    browserSync({ // Выполняем browserSync
+gulp.task('browser-sync', ['styles', 'scripts'], function () {
+    browserSync.init({
         proxy: "funbox.dev/app",
-        notify: false // Отключаем уведомления
+        notify: false
     });
 });
+
+gulp.task('styles', function () {
+    return gulp.src('./app/scss/*.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(rename({suffix: '.min', prefix: ''}))
+        .pipe(autoprefixer({browsers: ['last 3 versions', 'ie >= 10'], cascade: false}))
+        .pipe(cleanCSS())
+        .pipe(gulp.dest('./app/css/'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('scripts', function () {
+    return gulp.src('./app/js/common.js')
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('./app/js/'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('js-libs', function () {
+    return gulp.src([ // Берем все необходимые библиотеки
+            // Берем библиотеки
+        ])
+        .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле
+        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(gulp.dest('app/js/')); // Выгружаем в папку app/js
+});
+
 gulp.task('jade', function () {
-    gulp.src('app/jade/*.jade')
+    gulp.src('./app/jade/*.jade')
         .pipe(jade())
-        .pipe(gulp.dest('app/'))
+        .pipe(gulp.dest('./app/'))
         .pipe(browserSync.reload({stream: true}));
 });
-gulp.task('scripts', function () {
-    return gulp.src('app/js/common.js')
-        .pipe(uglify()) // Сжимаем JS файл
-        .pipe(rename({suffix: '.min'}))  // Добавляем суффикс .min
-        .pipe(gulp.dest('app/js'))
-        .pipe(browserSync.reload({stream: true})); // Выгружаем в папку app/js
-});
-gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch('app/scss/**/*.scss', ['scss']); // Наблюдение за sass файлами в папке sass
-    gulp.watch('app/jade/**/*.jade', ['jade']); // Наблюдение за jade файлами в папке jade
-    gulp.watch('app/js/**/*.js', ['scripts']);   // Наблюдение за JS файлами в папке js
-});
-gulp.task('clean', function () {
-    return del.sync('dist'); // Удаляем папку dist перед сборкой
-});
+
 gulp.task('img', function () {
-    return gulp.src('app/img/**/*') // Берем все изображения из app
-        .pipe(cache(imagemin({  // Сжимаем их с наилучшими настройками с учетом кеширования
+    return gulp.src('app/img/**/*')
+        .pipe(cache(imagemin({
             interlaced: true,
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         })))
-        .pipe(gulp.dest('dist/img')); // Выгружаем на продакшен
-});
-gulp.task('build', ['clean', 'img', 'scss', 'scripts'], function () {
-    var buildCss = gulp.src([ // Переносим библиотеки в продакшен
-            'app/css/style.min.css',
-            'app/css/lib.min.css'
-        ])
-        .pipe(gulp.dest('dist/css'))
-    var buildFonts = gulp.src('app/fonts/**/*') // Переносим шрифты в продакшен
-        .pipe(gulp.dest('dist/fonts'))
-    var buildJs = gulp.src('app/js/**/*') // Переносим скрипты в продакшен
-        .pipe(gulp.dest('dist/js'))
-    var buildHtml = gulp.src('app/*.html') // Переносим HTML в продакшен
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/img/')); // Выгружаем на продакшен
 });
 
-gulp.task('clear', function () {
-    return cache.clearAll();
-})
+gulp.task('templates', function () {
+    gulp.src('./app/jade/*.jade')
+        .pipe(jade())
+        .pipe(gulp.dest('./app/'))
+});
 
-gulp.task('default', ['watch']);
+gulp.task('clean', function () {
+    return del.sync('./dist'); // Удаляем папку dist перед сборкой
+});
+
+gulp.task('build', ['clean', 'img'], function () {
+    var buildCss = gulp.src('./app/css/*.css') // Переносим стили в продакшен
+        .pipe(gulp.dest('./dist/css/'))
+    var buildJs = gulp.src('./app/fonts/**/*') // Переносим шрифты в продакшен
+        .pipe(gulp.dest('./dist/fonts/'))
+    var buildJs = gulp.src('./app/js/*.js') // Переносим скрипты в продакшен
+        .pipe(gulp.dest('./dist/js/'))
+    var buildHtml = gulp.src('./app/*.html') // Переносим HTML в продакшен
+        .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('watch', function () {
+    gulp.watch('./app/scss/**/*.scss', ['styles']);
+    gulp.watch('./app/js/common.js', ['scripts']);
+    gulp.watch('./app/jade/**/*.jade', ['jade']);
+});
+
+gulp.task('default', ['browser-sync', 'watch']);
