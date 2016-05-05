@@ -1,15 +1,15 @@
 mixin package(text)
     section.package(class={'package--disabled': text.disable === true})
-        .package__up
-            span.package__up--default= text.up_default
-            span.package__up--selected-hover= text.up_selected_hover
-        .package__down
+        .package__content
+            p.package__heading
+                span.package__heading--default= text.up_default
+                span.package__heading--selected-hover= text.up_selected_hover
             h2.package__name= text.name
                 span.package__taste= text.taste
             p.package__text!= text.text
             .package__weight!= text.weight + '<br>'
                 span.package__weight-units= text.weight_units
-        h4.package__title
+        p.package__title
             span.package__title--default= text.title_default
                 a.package__link(href=text.title_link) купи.
             span.package__title--selected= text.title_selected

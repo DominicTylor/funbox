@@ -28,26 +28,29 @@ body {
   font-weight: bold;
   font-style: italic;
 }
+// два flex нужны для выравнивания по центру в ie, в chrome и FF всё прекрасно выравнивается и одним
 .wrapper {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  background: url(../img/shadow_up.png) repeat-x left top,
-  url(../img/shadow_down.png) repeat-x left bottom,
+  background: linear-gradient(to top, black -50%, transparent 40%, black 150%),
+  linear-gradient(to bottom, black -50%, transparent 40%, black 150%),
   url(../img/background.jpg);
 }
+
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 1140px;
   align-content: center;
   justify-content: space-between;
   font-size: 1.4rem;
   padding: 10px 10px 18px;
   min-height: 100vh;
 }
+
 .heading {
   color: $white;
   font-family: "Exo2.0-Thin";

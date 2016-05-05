@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.package').on('click', '.package__up, .package__down, .package__link', function (event) {
+    $('.package').on('click', '.package__content, .package__link', function (event) {
         var package = $(this).closest('.package');
         if(!$(package).hasClass('package--disabled')) {
             event.preventDefault();
