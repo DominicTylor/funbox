@@ -1,5 +1,7 @@
 #FunBox
 
+[посмотреть на хостинге](http://funbox.alteriko.ru/)
+
 Сетка на flexbox, jade, scss, нэйминг по БЭМ.
 
 div с классом package__fast-load-img нужен для предзагрузки фонов
