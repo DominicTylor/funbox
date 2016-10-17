@@ -1,6 +1,6 @@
 #FunBox
 
-[посмотреть на хостинге](http://funbox.alteriko.ru/)
+[посмотреть на хостинге]http://project.someonedev.ru/funbox/)
 
 Сетка на flexbox, jade, scss, нэйминг по БЭМ.
 
